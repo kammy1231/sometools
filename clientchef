@@ -1,6 +1,6 @@
 #!/bin/bash
 #clientchef type cmd
-X_cmd(){ # user pw host cmd 
+X_cmd(){ # user pw host cmd
         local U=$1 ; shift # user
         local PW=$1 ; shift # password
         local H=$1 ; shift # host
@@ -12,10 +12,9 @@ X_cmd(){ # user pw host cmd
       expect timeout { break } \"(yes/no)?\" { sleep 1;send \"yes\r\" } \"word: \" { sleep 1;send \"$PW\r\" } -re \"$PR\" { sleep 1;send \"\r\";break }
     }
     expect -re \"$PR\" ; sleep 1; send \"$*\r\"
-    
     expect -re \"Report handlers complete\" ; sleep 1; send \"exit\r\"
-    "
-        echo 'exit expect'
+"
+echo 'exit expect'
 }
 
 RTYPE="${1}"; RUSER="root"; RPASSWD="odebuchan!"; RCMD="${2} ${3} ${4}"
