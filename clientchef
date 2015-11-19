@@ -17,7 +17,7 @@ X_cmd(){ # user pw host cmd
 echo 'exit expect'
 }
 
-RTYPE="${1}"; RUSER="root"; RPASSWD="odebuchan!"; RCMD="${2} ${3} ${4}"
+RTYPE="${1}"; RUSER="root"; RPASSWD="password"; RCMD="${2} ${3} ${4}"
 
 readonly DRsize=/var/tmp/Rsize
 Creates()
@@ -37,13 +37,13 @@ EOF
 }
 Main()
 {
-  ret=`cat /etc/client/${RTYPE}.client >${DRsize} 2>/dev/null`
+  cat /etc/client/${RTYPE}.client > ${DRsize}`
   Rsize=${DRsize}
   cat ${Rsize} | while read line
   do
     Creates
   done
-  rm -f ${DRsize} 2>/dev/null
+  rm -f ${DRsize}
   echo "end current ${HOSTNAME}"
 }
 
